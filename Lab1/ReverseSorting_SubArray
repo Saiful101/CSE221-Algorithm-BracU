@@ -58,3 +58,30 @@ public class ReverseSorting {
         }
     }
 }
+
+
+/*
+     Input:
+      4         //size
+      2 3 1 1   //elments of array
+
+      Output:
+      YES
+      2         swap count
+      1 3       subarray swaping position
+      2 4
+--------------------------------
+      Input:
+      6
+      2 5 5 1 5 5
+      Output:
+      NO
+---------------------------------
+      Input:
+      2
+      6 6
+      Output:
+      YES
+      0
+ */
+
