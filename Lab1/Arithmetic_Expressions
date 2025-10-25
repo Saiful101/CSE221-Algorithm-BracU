@@ -1,0 +1,27 @@
+import java.util.*;
+public class Arithmetic_Expressions{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        for (int i = 0; i < T; i++) {
+            String word = sc.next();
+            Double num1 = sc.nextDouble();
+            String operator = sc.next();
+            Double num2 = sc.nextDouble();
+
+            Double result = 0.0;
+
+            if (operator.equals("+")) {
+                result = num1 + num2;
+            } else if (operator.equals("-")) {
+                result = num1 - num2;
+            } else if (operator.equals("*")) {
+                result = num1 * num2;
+            } else if (operator.equals("/")) {
+                result = num1 / num2;
+            }
+            System.out.printf("%.6f\n",result); // for 6 decimal place.
+        }
+    }
+}
