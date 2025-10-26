@@ -25,3 +25,22 @@ public class Arithmetic_Expressions{
         }
     }
 }
+
+/*
+      Input:
+      15 ==> Number of test case
+      calculate 67 + 41
+      calculate 85 / 5
+      calculate 13 - 56
+      calculate 99 - 95
+      calculate 3 / 10
+      calculate 12 * 19
+  ------------------------------
+      Output:
+      108.000000
+      17.000000
+     -43.000000
+      4.000000
+      0.300000
+      228.000000
+ */
