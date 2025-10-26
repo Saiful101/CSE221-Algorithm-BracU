@@ -1,1 +1,67 @@
+import java.util.*;
 
+public class SortingAgain {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        for (int p = 0; p < T; p++) {
+            int N = sc.nextInt();
+            int[] id = new int[N];
+            int[] mark = new int[N];
+
+            for (int i = 0; i < N; i++){
+                id[i] = sc.nextInt();
+            }
+            for (int i = 0; i < N; i++) {
+                mark[i] = sc.nextInt();
+            }
+            int count = 0;
+
+            for (int i = 0; i < N - 1; i++) {
+                for (int j = 0; j < N - i - 1; j++) {
+
+                    if (mark[j] < mark[j + 1] ||
+                            (mark[j] == mark[j + 1] && id[j] > id[j + 1])) {
+
+                        // swap marks
+                        int temp1 = mark[j];
+                        mark[j] = mark[j + 1];
+                        mark[j + 1] = temp1;
+
+                        // swap ids
+                        int temp2 = id[j];
+                        id[j] = id[j + 1];
+                        id[j + 1] = temp2;
+
+                        count++;
+                    }
+                }
+            }
+
+            System.out.println("Minimum swaps: " + count);
+            for (int m = 0; m < N; m++) {
+                System.out.println("ID: " + id[m] + " Mark: " + mark[m]);
+            }
+        }
+    }
+}
+
+/*
+     Input:
+     2
+     7
+     7 4 9 3 2 5 1
+     40 50 50 20 10 10 10
+ -------------------------------
+     Output:
+     Minimum swaps: 4
+     ID: 4 Mark: 50
+     ID: 9 Mark: 50
+     ID: 7 Mark: 40
+     ID: 3 Mark: 20
+     ID: 1 Mark: 10
+     ID: 2 Mark: 10
+     ID: 5 Mark: 10
+
+ */
