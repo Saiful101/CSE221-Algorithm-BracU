@@ -1,1 +1,46 @@
+import java.util.*;
+public class isSorted {
+    public static void main (String[]agrs){
+        Scanner sc= new Scanner(System.in);
+        int T= sc.nextInt();
 
+        for (int i=0; i<T; i++){
+            int N= sc.nextInt();
+            long []arr= new long [N];
+            for(int j=0; j<N; j++){
+                arr[j]= sc.nextLong();
+            }
+
+            boolean flag=true;
+            for (int k=0; k<N-1; k++){
+                if (arr[k] > arr[k+1]) {
+                    flag = false;
+                    break;
+                }
+            }
+            if( flag==true) {
+                System.out.println("YES");
+            }else{
+                System.out.println("NO");
+            }
+        }
+    }
+
+}
+
+
+/*
+    Input:
+      3 ==> Number of test case.
+      4
+      1 2 3 3 
+      4
+      1 5 2 6
+      1
+      5
+  --------------------
+      Output:
+      YES
+      NO
+      YES
+ */
