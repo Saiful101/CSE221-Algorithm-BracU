@@ -49,8 +49,8 @@ public class SortingAgain {
 
 /*
      Input:
-     2
-     7
+     1 ==> Number of test case
+     7 ==  Input of Array Size
      7 4 9 3 2 5 1
      40 50 50 20 10 10 10
  -------------------------------
