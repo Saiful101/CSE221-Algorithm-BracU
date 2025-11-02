@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class LongestSubArray {
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int p1=0;
+        int p2=0;
+        long sum=arr[0];
+        int maxLen=0;
+
+        while(p2<N){
+            while(p1<=p2 && sum>K){
+                sum-=arr[p1];
+                p1++;
+            }
+            if(sum<=K){
+                maxLen=Math.max(maxLen,(p2-p1)+1);
+            }
+            p2++;
+            if(p2<N) {
+                sum += arr[p2];
+            }
+        }
+        System.out.println(maxLen);
+    }
+}
+
+/* 
+//The first line contains two integers N (1≤𝑁≤10^5) and K (1≤𝐾≤10^9) 
+the size of the array and the maximum allowed sum.
+
+        input
+        5 4  
+        4 1 2 1 5
+        output
+        3
+ ---------------------
+        input
+        5 5
+        1 1 1 1 1
+        output
+        5
+ ----------------------
+        input
+        3 1
+        2 3 4
+        output
+        0
+*/
