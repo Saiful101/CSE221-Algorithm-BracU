@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class TripleSumTrouble {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int targetSum = sc.nextInt();
+
+        int[] arr = new int[N];
+        int[] index = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+            index[i] = i;
+        }
+        func(arr, index);
+
+        boolean flag = false;
+        for (int i = 0; i < N; i++) {
+            int p = i + 1;
+            int q = N - 1;
+
+            while (p < q) {
+                long sum = (long) arr[i] + arr[p] + arr[q];
+                if (sum == targetSum) {
+                   System.out.println((index[i] + 1) + " " + (index[p] + 1) + " " + (index[q] + 1));
+                    flag = true;
+                    break;
+                } else if (sum < targetSum) {
+                    p++;
+                } else {
+                    q--;
+                }
+            }
+            if(flag==true){
+                break;
+            }
+
+        }
+
+        if (flag==false) {
+            System.out.println("-1");
+        }
+    }
+    public static void func(int[] arr, int[] index) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+
+                    int temp1 = index[i];
+                    index[i] = index[j];
+                    index[j] = temp1;
+                }
+            }
+        }
+    }
+}
+
+/*
+        input
+        7 3
+        2 1 1 2 2 1 1
+        output
+        2 3 6 
+---------------------------        
+        input
+        3 5
+        1 3 2
+        output
+        -1
+ */
