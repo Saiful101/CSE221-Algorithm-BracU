@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class CountNumber {
+    public static void main(String[]args){
+        Scanner sc= new Scanner(System.in);
+        int N= sc.nextInt();
+        int T= sc.nextInt();
+        int []arr=new int[N];
+
+        for(int i=0; i<N; i++){
+            arr[i]=sc.nextInt();
+        }
+        for(int i=0; i<T; i++){
+            int x=sc.nextInt();
+            int y= sc.nextInt();
+            int lower_bound= lowerBound(arr,x);
+            int uper_bound=uperBound(arr,y);
+            int count= uper_bound-lower_bound;
+            System.out.println(count);
+        }
+    }
+    public static int lowerBound(int[]arr, int x){
+        int n= arr.length;
+        int index=n;
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid= (low+high)/2;
+            if(arr[mid]>=x){
+                index=mid;
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return index;
+    }
+    public static int uperBound(int []arr, int y){
+        int n= arr.length;
+        int index=n;
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid= (low+high)/2;
+            if(arr[mid]>y){
+                index=mid;
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return index;
+    }
+}
+
+/*
+You are given a sorted array 𝑎 of 𝑛 elements, and some queries. In each query,
+you are given a pair [𝑥,𝑦] and you have to count how many numbers 𝑎𝑖 are there
+such that 𝑥≤𝑎𝑖≤𝑦. For example, if the array is [10,20,20,45,79] and you are
+given a query [20,50], then answer will be 3 because there are in total 3
+numbers that's value is between 20 and 50.
+
+        input
+        5 3 // size of array and 3 test case of pair.
+        10 20 20 45 79
+        20 50
+        5 45
+        1 100
+ --------------------------
+        output
+        3
+        4
+        5
+ */
