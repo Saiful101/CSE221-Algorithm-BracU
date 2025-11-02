@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class SearchingIsFun {
+    public static void main(String []args){
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        for (int i=0; i< T; i++) {
+            int k = sc.nextInt();
+            int x = sc.nextInt();
+
+            if (k < x) {
+                System.out.println(k);
+                continue;
+            }
+            long ans=(long) k+(k/(x-1));
+
+            if(ans%x==0){
+                System.out.println(ans-1);
+            }else{
+                System.out.println(ans);
+        }
+
+        }
+
+    }
+}
+/*
+You are given two positive integers: 𝑘 and 𝑥. Consider the sequence of all positive integers
+that are not divisible by 𝑥. Your task is to find the 𝑘-th number in this sequence.
+
+For example, if 𝑥=3, and 𝑘=7, then all numbers that are not divisible
+by 3 are: 1,2,4,5,7,8,10,11,13…. The 7-th number among them is 10.
+
+        input
+        6 // number of test case
+        7 3 // K and X
+        100 5
+        49 13
+        36 2
+        1 2
+        11 11
+ -----------------------       
+        output
+        10
+        124
+        53
+        71
+        1
+        12
+ */
