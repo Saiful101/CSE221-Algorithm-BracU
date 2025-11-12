@@ -1,0 +1,89 @@
+import java.util.*;
+
+public class Count_Inversion_Revisited {
+    static long count;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        count = 0;
+        mergeSort(arr, 0, n - 1);
+        System.out.println(count);
+    }
+
+    static void mergeSort(int[] arr, int left, int right) {
+
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    static void merge(int[] arr, int left, int mid, int right) {
+        ArrayList<Integer>temp=new ArrayList<>();
+        int i = left, j = mid + 1;
+
+        //outer loop is running for right array.
+        for (int idx = j; idx <= right; idx++) {
+            long squared = (long) arr[idx] * arr[idx];
+            //inner loop is running for left array.
+            int low = left, high = mid;
+            int firstIndex = mid + 1;
+            while (low <= high) {
+                int mid2 = low + (high - low) / 2;
+                if (arr[mid2] > squared) {
+                    firstIndex = mid2;
+                    high = mid2 - 1;
+                } else {
+                    low = mid2 + 1;
+                }
+            }
+            count += (mid - firstIndex + 1);
+        }
+
+        i = left;
+        j = mid + 1;
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp.add(arr[i++]);
+            } else {
+                temp.add(arr[j++]);
+            }
+        }
+
+        while (i <= mid) {
+            temp.add(arr[i++]);
+        }
+
+        while (j <= right) {
+            temp.add(arr[j++]);
+        }
+
+        for (int idx = left; idx<=right; idx++) {
+            arr[idx]=temp.get(idx-left);
+        }
+    }
+}
+
+/* 
+    input
+    6
+    10 2 5 1 -2 25
+    output
+    6
+ --------------------   
+    input
+    5
+    5 4 3 -2 -1
+    output
+    4
+
+ */
