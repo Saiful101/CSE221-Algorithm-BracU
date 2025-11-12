@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+
+public class FastSeriesDrift {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder output = new StringBuilder();
+        int T = Integer.parseInt(br.readLine().trim());
+
+        for (int t = 0; t < T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            long a = Long.parseLong(st.nextToken());
+            long n = Long.parseLong(st.nextToken());
+            long m = Long.parseLong(st.nextToken());
+
+            if (a == 1) {
+                long result = n % m;
+                output.append(result).append("\n");
+            } else {
+                long Fn = geometricSeries(a, n, m);
+                long result = (a % m) * Fn % m;
+                output.append(result).append("\n");
+            }
+        }
+        System.out.print(output);
+    }
+
+    private static long geometricSeries(long a, long n, long mod) {
+        if (n == 0) return 0;
+        a %= mod;
+        long S = 1;
+        long P = a;
+        long ans = 0;
+        while (n > 0) {
+            if (n %2 == 1) {
+                ans = (ans * P + S) % mod;
+            }
+            S = S * (1 + P) % mod;
+            P = P * P % mod;
+            n=n/2 ;
+        }
+        return ans;
+    }
+}
+
+/*
+    input
+    3
+    2 5 1000
+    2 9 1000
+    1 100 30
+---------------    
+    output
+    62
+    22
+    10
+
+ */
