@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class OrdinaryBinaryTree {
+    static ArrayList<Integer>result= new ArrayList<>();
+    public static void main(String[]args){
+        Scanner sc= new Scanner(System.in);
+        int N= sc.nextInt();
+        int []arr= new int[N];
+
+        for(int i=0; i<N; i++){
+            arr[i]=sc.nextInt();
+        }
+        BalancedBinaryTree(arr,0,N-1);
+
+        for(int i=0; i< N; i++){
+            System.out.print(result.get(i)+" ");
+        }
+    }
+    public static void BalancedBinaryTree(int[]arr,int start, int end){
+        if(start>end){
+            return;
+        }
+        int mid=(start+end)/2;
+
+        result.add(arr[mid]);
+        BalancedBinaryTree(arr,start,mid-1);
+        BalancedBinaryTree(arr,mid+1, end);
+
+    }
+}
+
+/*
+    input
+    5
+    1 2 3 4 5
+ ---------------   
+    output
+    3 1 2 4 5 
+    
+ */
