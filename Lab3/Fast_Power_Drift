@@ -1,0 +1,30 @@
+//You are given two integers a and b. Calculate 𝑎^𝑏 𝑚𝑜𝑑 107.
+
+import java.util.Scanner;
+
+public class FastPowerDrift {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        long b = scanner.nextLong();
+        int mod = 107;
+        long result = 1; // lowest power can be zero. we get 1.
+
+        long base = a % mod;
+
+        while (b > 0) {
+
+            if (b % 2 == 1) {
+                result = (result * base) % mod;
+            }
+
+            base = (base * base) % mod;
+
+            b = b / 2;
+        }
+
+        System.out.println(result);
+    }
+}
+
