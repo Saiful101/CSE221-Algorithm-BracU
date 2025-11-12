@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+
+public class FastMatrixDrift {
+    static final long MOD = 1000000007;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder output = new StringBuilder();
+
+        int T = Integer.parseInt(br.readLine().trim());
+
+        for (int t = 0; t < T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            long a11 = Long.parseLong(st.nextToken());
+            long a12 = Long.parseLong(st.nextToken());
+            long a21 = Long.parseLong(st.nextToken());
+            long a22 = Long.parseLong(st.nextToken());
+            long X = Long.parseLong(br.readLine().trim());
+
+            long[][] base = {
+                    {a11 % MOD, a12 % MOD},
+                    {a21 % MOD, a22 % MOD}
+            };
+
+            long[][] result = matrixPower(base, X);
+
+            output.append(result[0][0]).append(" ").append(result[0][1]).append("\n");
+            output.append(result[1][0]).append(" ").append(result[1][1]).append("\n");
+        }
+
+        System.out.print(output);
+    }
+
+    static long[][] multiply(long[][] A, long[][] B) {
+        long a00 = (A[0][0] * B[0][0] + A[0][1] * B[1][0]) % MOD;
+        long a01 = (A[0][0] * B[0][1] + A[0][1] * B[1][1]) % MOD;
+        long a10 = (A[1][0] * B[0][0] + A[1][1] * B[1][0]) % MOD;
+        long a11 = (A[1][0] * B[0][1] + A[1][1] * B[1][1]) % MOD;
+
+        return new long[][]{
+                {a00, a01},
+                {a10, a11}
+        };
+    }
+
+    static long[][] matrixPower(long[][] base, long exponent) {
+        long[][] result = {{1, 0}, {0, 1}};
+
+        while (exponent > 0) {
+            if (exponent %2 == 1) {
+                result = multiply(result, base);
+            }
+            base = multiply(base, base);
+            exponent=exponent/2;
+        }
+        return result;
+    }
+}
